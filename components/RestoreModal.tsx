@@ -21,7 +21,7 @@ export default function RestoreModal({ open, onClose }: Props) {
   }
 
   function handleUnlock() {
-    alert(`Mock restore using ${method}.`);
+    alert(`Restore using ${method}.`);
     onClose();
   }
 

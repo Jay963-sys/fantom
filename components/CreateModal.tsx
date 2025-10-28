@@ -102,8 +102,8 @@ export default function CreateModal({ open, onClose }: Props) {
           <>
             <h4 className="text-xl font-bold">Backup seed phrase</h4>
             <p className="text-gray-400">
-              This is a mock step. Show mnemonic and require user to confirm
-              words in the following steps.
+              Show mnemonic and require user to confirm words in the following
+              steps.
             </p>
 
             <div className="flex justify-center mt-6">
@@ -120,7 +120,7 @@ export default function CreateModal({ open, onClose }: Props) {
         {step === 3 && (
           <>
             <h4 className="text-xl font-bold">Confirm seed phrase</h4>
-            <p className="text-gray-400">Mock confirmation step</p>
+            <p className="text-gray-400">confirmation step</p>
             <div className="flex justify-center mt-4">
               <button
                 className="bg-gradient-to-b from-[#2173FF] to-[#1a62e6] px-6 py-3 rounded-full font-bold"
@@ -136,7 +136,7 @@ export default function CreateModal({ open, onClose }: Props) {
           <>
             <h4 className="text-xl font-bold">All done</h4>
             <p className="text-gray-400">
-              Wallet created (mock). You can now access your account.
+              Wallet created. You can now access your account.
             </p>
             <div className="flex justify-center mt-4">
               <button
