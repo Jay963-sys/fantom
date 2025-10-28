@@ -1,84 +1,106 @@
 "use client";
 
-import "./globals.css";
-import Image from "next/image";
-import Link from "next/link";
-import { Wallet, Plus, KeyRound } from "lucide-react";
+import React, { useState } from "react";
+import ConnectModal from "../components/ConnectModal";
+import CreateModal from "../components/CreateModal";
+import RestoreModal from "../components/RestoreModal";
 
-export default function Home() {
+export default function HomePage() {
+  const [connectOpen, setConnectOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
+  const [restoreOpen, setRestoreOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-      {/* Header */}
-      <header className="container mx-auto px-6 py-6">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
-            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+    <div className="min-h-screen bg-[#1a1a1a]">
+      <header className="py-6 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-2">
+            <img
+              src="https://pwawallet.fantom.network/fantom-logo-blue.svg"
+              alt="Fantom Logo"
+              width="32"
+              height="32"
+              className="w-32 h20"
+            />
           </div>
-          <span className="text-2xl font-bold text-blue-400">fantom</span>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Title Section */}
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+      <section className="pt-20 pb-24 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-3xl md:text-6xl font-bold text-white leading-tight">
             Welcome to Fantom PWA Wallet
           </h1>
-
-          <p className="text-xl text-gray-400 mb-16">
+          <p className="mt-4 text-xl text-gray-300">
             Send, receive and stake your Opera FTM
           </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-600/50 hover:shadow-blue-600/70 hover:scale-105">
-              <Wallet className="w-5 h-5" />
+          <div className="mt-16 flex flex-wrap gap-6 items-center justify-center">
+            <button
+              onClick={() => setConnectOpen(true)}
+              className="bg-[#2173FF] hover:bg-[#1a62e6] text-white px-10 py-4 rounded-full font-semibold flex items-center gap-3 shadow-lg transition-colors text-lg"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L8 6L12 10L16 6L12 2Z" fill="currentColor" />
+                <path d="M12 14L8 18L12 22L16 18L12 14Z" fill="currentColor" />
+                <path d="M2 12L6 8L10 12L6 16L2 12Z" fill="currentColor" />
+                <path d="M14 12L18 8L22 12L18 16L14 12Z" fill="currentColor" />
+              </svg>
               Connect Wallet
             </button>
 
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-600/50 hover:shadow-blue-600/70 hover:scale-105">
-              <Plus className="w-5 h-5" />
+            <button
+              onClick={() => setCreateOpen(true)}
+              className="bg-[#2173FF] hover:bg-[#1a62e6] text-white px-10 py-4 rounded-full font-semibold flex items-center gap-3 shadow-lg transition-colors text-lg"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <rect
+                  x="3"
+                  y="6"
+                  width="18"
+                  height="13"
+                  rx="2"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  fill="none"
+                />
+                <line
+                  x1="3"
+                  y1="10"
+                  x2="21"
+                  y2="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
               Create Wallet
             </button>
 
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-600/50 hover:shadow-blue-600/70 hover:scale-105">
-              <KeyRound className="w-5 h-5" />
+            <button
+              onClick={() => setRestoreOpen(true)}
+              className="bg-[#2173FF] hover:bg-[#1a62e6] text-white px-10 py-4 rounded-full font-semibold flex items-center gap-3 shadow-lg transition-colors text-lg"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 2C10.9 2 10 2.9 10 4V12L7 9C6.4 8.4 5.6 8.4 5 9C4.4 9.6 4.4 10.4 5 11L11 17C11.6 17.6 12.4 17.6 13 17L19 11C19.6 10.4 19.6 9.6 19 9C18.4 8.4 17.6 8.4 17 9L14 12V4C14 2.9 13.1 2 12 2Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M5 20C5 19.4 5.4 19 6 19H18C18.6 19 19 19.4 19 20C19 20.6 18.6 21 18 21H6C5.4 21 5 20.6 5 20Z"
+                  fill="currentColor"
+                />
+              </svg>
               Restore Wallet
             </button>
           </div>
 
-          {/* Platform Information */}
-          <div className="mb-12">
-            <p className="text-gray-400 mb-8">
+          <div className="mt-20 pt-8 border-t  border-white/10">
+            <p className="text-gray-400 text-base mb-8 text-center">
               The Fantom PWA Wallet has been created as a Progressive Web App
               (PWA) which is easy to launch on all platforms:
             </p>
-
-            <div className="flex flex-wrap justify-center items-center gap-8">
-              <div className="flex items-center gap-2 text-blue-400">
+            <div className="flex flex-wrap gap-8 items-center justify-center">
+              <div className="flex items-center gap-2 text-[#2173FF]">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
@@ -86,103 +108,56 @@ export default function Home() {
                 >
                   <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
                 </svg>
-                <span className="font-medium">Windows</span>
+                <span className="font-semibold">Windows</span>
               </div>
-
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="flex items-center gap-2 text-[#2173FF]">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z" />
+                  <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
                 </svg>
-                <span className="font-medium">macOS</span>
+                <span className="font-semibold">macOS</span>
               </div>
-
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="flex items-center gap-2 text-[#2173FF]">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" />
+                  <path d="M12.5 0L.76 6.424 12.5 24l11.74-17.576z" />
                 </svg>
-                <span className="font-medium">Linux</span>
+                <span className="font-semibold">Linux</span>
               </div>
-
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="flex items-center gap-2 text-[#2173FF]">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                  <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
                 </svg>
-                <span className="font-medium">iOS</span>
+                <span className="font-semibold">iOS</span>
               </div>
-
-              <div className="flex items-center gap-2 text-blue-400">
+              <div className="flex items-center gap-2 text-[#2173FF]">
                 <svg
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
-                  <path d="M17.523 15.341c-.539-.71-1.083-1.469-1.083-2.372 0-.903.544-1.661 1.083-2.371.271-.356.542-.711.542-1.156 0-.445-.271-.801-.542-1.156-.539-.71-1.083-1.469-1.083-2.372s.544-1.661 1.083-2.371c.271-.356.542-.711.542-1.156 0-.445-.271-.801-.542-1.156-.539-.71-1.083-1.469-1.083-2.372 0-.903.544-1.661 1.083-2.371.271-.356.542-.711.542-1.156 0-.445-.271-.801-.542-1.156-.539-.71-1.083-1.469-1.083-2.372s.544-1.661 1.083-2.371c.271-.356.542-.711.542-1.156 0-.445-.271-.801-.542-1.156C17.983.71 17.439-.049 17.439-.952" />
+                  <path d="M17.523 15.341c-.8 0-1.438-.661-1.438-1.486s.638-1.486 1.438-1.486c.8 0 1.438.661 1.438 1.486 0 .825-.638 1.486-1.438 1.486m-11.046 0c-.8 0-1.438-.661-1.438-1.486s.638-1.486 1.438-1.486c.8 0 1.438.661 1.438 1.486 0 .825-.638 1.486-1.438 1.486m19.523-2.097c0 1.126-.932 2.042-2.074 2.042-.633 0-1.195-.289-1.573-.741-.927.608-2.168 1.007-3.577 1.09l.608 2.862 1.98-.421c.054-.757.689-1.357 1.464-1.357.821 0 1.486.665 1.486 1.486s-.665 1.486-1.486 1.486c-.607 0-1.127-.364-1.359-.886l-2.204.469c-.166.036-.331-.065-.386-.227l-.683-3.218c-1.456-.042-2.734-.441-3.693-1.073-.378.441-.933.73-1.556.73-1.142 0-2.074-.916-2.074-2.042 0-.816.479-1.518 1.17-1.845-.054-.236-.083-.482-.083-.736 0-2.716 3.16-4.927 7.056-4.927s7.056 2.211 7.056 4.927c0 .254-.029.5-.083.736.691.327 1.17 1.029 1.17 1.845M1.004 12.974c0-1.126.932-2.042 2.074-2.042.633 0 1.195.289 1.573.741.927-.608 2.168-1.007 3.577-1.09l.608-2.862-1.98.421c-.054.757-.689 1.357-1.464 1.357-.821 0-1.486-.665-1.486-1.486S3.571 6.527 4.392 6.527c.607 0 1.127.364 1.359.886l2.204-.469c.166-.036.331.065.386.227l.683 3.218c1.456.042 2.734.441 3.693 1.073.378-.441.933-.73 1.556-.73 1.142 0 2.074.916 2.074 2.042 0 .816-.479 1.518-1.17 1.845.054.236.083.482.083.736 0 2.716-3.16 4.927-7.056 4.927s-7.056-2.211-7.056-4.927c0-.254.029-.5.083-.736-.691-.327-1.17-1.029-1.17-1.845" />
                 </svg>
-                <span className="font-medium">Android</span>
+                <span className="font-semibold">Android</span>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-800">
-        <div className="container mx-auto px-6 py-8">
-          <div className="flex flex-wrap justify-center items-center gap-12">
-            <Link
-              href="https://twitter.com"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-              <span>Twitter</span>
-            </Link>
-
-            <Link
-              href="https://telegram.org"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z" />
-              </svg>
-              <span>Telegram</span>
-            </Link>
-
-            <Link
-              href="https://reddit.com"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z" />
-              </svg>
-              <span>Reddit</span>
-            </Link>
-
-            <Link
-              href="https://github.com"
-              className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-              </svg>
-              <span>Github</span>
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <ConnectModal open={connectOpen} onClose={() => setConnectOpen(false)} />
+      <CreateModal open={createOpen} onClose={() => setCreateOpen(false)} />
+      <RestoreModal open={restoreOpen} onClose={() => setRestoreOpen(false)} />
     </div>
   );
 }
